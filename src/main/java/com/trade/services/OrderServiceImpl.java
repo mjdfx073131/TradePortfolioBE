@@ -16,7 +16,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     public List<Order> getAllOrders() {
-        System.out.println(dao.findAll().toString());
         return dao.findAll();
     }
 }
