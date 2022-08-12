@@ -3,46 +3,27 @@ package com.trade.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 
+
 @Entity @Table(name="orders")
-
-//@NamedQueries(
-//        {
-//                @NamedQuery(name="order.getAll",
-//                        query="select cd from CompactDisc as cd where cd.price > :price",
-//                        hints = {@QueryHint(name = "org.hibernate.cacheable", value = "true")})
-//        })
-
 public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id")
-    private int id;
-
-    // add attributes for all the remaining properties
-    @Column(name="orderId") private int orderId;
+    @Column(name="orderId") private Integer orderId;
     @Column(name="SIN") private String SIN;
     @Column(name="ticker") private String ticker;
-    @Column(name="shares") private int shares;
-    @Column(name="unitPrice") private double unitPrice;
-    @Column(name="status_code") private int status_code;
+    @Column(name="shares") private Integer shares;
+    @Column(name="unitPrice") private Double unitPrice;
+    @Column(name="status_code") private Integer status_code;
 
 
     public Order() {}
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
 
@@ -62,7 +43,7 @@ public class Order implements Serializable {
         this.ticker = ticker;
     }
 
-    public int getShares() {
+    public Integer getShares() {
         return shares;
     }
 
@@ -70,7 +51,7 @@ public class Order implements Serializable {
         this.shares = shares;
     }
 
-    public double getUnitPrice() {
+    public Double getUnitPrice() {
         return unitPrice;
     }
 
@@ -78,7 +59,7 @@ public class Order implements Serializable {
         this.unitPrice = unitPrice;
     }
 
-    public int getStatus_code() {
+    public Integer getStatus_code() {
         return status_code;
     }
 
@@ -86,12 +67,12 @@ public class Order implements Serializable {
         this.status_code = status_code;
     }
 
-    public Order(int orderId, String SIN, String ticker, int shares, double unitPirce, int status_code){
+    public Order(Integer orderId, String SIN, String ticker, Integer shares, Double unitPrice, Integer status_code){
         this.orderId = orderId;
         this.SIN = SIN;
         this.ticker = ticker;
         this.shares = shares;
-        this.unitPrice = unitPirce;
+        this.unitPrice = unitPrice;
         this.status_code = status_code;
     }
 
