@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Import;
 @ComponentScan // required in order for tests to pick up @Components
 public class AppConfig {
     public static void main(String[] args) {
+        // try auto build on jenkins
         SpringApplication.run(AppConfig.class, args);
     }
 
