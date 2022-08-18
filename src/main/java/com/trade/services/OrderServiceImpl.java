@@ -29,10 +29,11 @@ public class OrderServiceImpl implements OrderService {
         else return null;
     }
 
+    @Override
     public List<Order> findBySIN(String SIN){
         return (List<Order>) dao.findBySIN(SIN);
     };
-
+    @Override
     public List<Order> findByTicker(String ticker){
         return (List<Order>) dao.findByTicker(ticker);
     };
