@@ -19,9 +19,15 @@ public class OrderServiceImpl implements OrderService {
         return dao.findAll();
     }
 
-    @Transactional(propagation=Propagation.REQUIRED)
-    public void deleteOrderById(int id){
-        dao.deleteById(id);
+    @Override
+    public boolean deleteOrderById(int id){
+        Order order = dao.findById(id).orElse(null);
+        if(order == null){
+            return false;
+        }else{
+            dao.delete(order);
+            return true;
+        }
     }
 
 }
