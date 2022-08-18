@@ -18,4 +18,10 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getAllOrders() {
         return dao.findAll();
     }
+
+    @Override
+    public Order addNewOrder(Order order) {
+//        order.setOrderId(0);
+        return dao.save(order);
+    }
 }
