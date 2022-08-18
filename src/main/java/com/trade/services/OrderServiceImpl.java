@@ -21,7 +21,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order addNewOrder(Order order) {
-//        order.setOrderId(0);
         return dao.save(order);
     }
 }
