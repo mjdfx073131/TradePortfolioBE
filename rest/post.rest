@@ -2,6 +2,7 @@ POST http://localhost:8080/api/orders
 Content-type: application/json
 
 {
+    "orderId": 10,
     "sin": "949999999",
     "ticker": "TSLA",
     "shares": 2,
