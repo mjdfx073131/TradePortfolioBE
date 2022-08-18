@@ -4,10 +4,7 @@ import com.trade.entities.Order;
 import com.trade.services.OrderService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -20,5 +17,10 @@ public class OrderController {
     @RequestMapping(method = RequestMethod.GET)
     public Iterable<Order> findAll() {
         return orderService.getAllOrders();
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+    public void deleteById(@PathVariable("id") int id){
+        orderService.deleteOrderById(id);
     }
 }

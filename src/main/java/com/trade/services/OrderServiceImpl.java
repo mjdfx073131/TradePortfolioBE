@@ -18,4 +18,10 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getAllOrders() {
         return dao.findAll();
     }
+
+    @Transactional(propagation=Propagation.REQUIRED)
+    public void deleteOrderById(int id){
+        dao.deleteById(id);
+    }
+
 }
