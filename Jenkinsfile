@@ -18,7 +18,7 @@ pipeline {
            //MYSQL_CREDS = credentials('MySQLCreds')
           }
       steps {
-        sh "oc login -u admin -u admin"
+        sh "oc login https://openshift30.conygre.com:8443 --token=x2Va9RXJumPE1vMUuDMdmZS1umOIuHKkJzLWdgB_ftc"
         sh "oc project ${projectName} || oc new-project ${projectName}"
         sh "oc delete all --selector app=${projectName} || echo 'Unable to delete all previous openshift resources'"
         sh "oc new-app ${dockerImageTag} -l version=${version}"
