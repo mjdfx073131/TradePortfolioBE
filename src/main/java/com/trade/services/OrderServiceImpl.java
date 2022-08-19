@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -29,5 +30,22 @@ public class OrderServiceImpl implements OrderService {
             return true;
         }
     }
+
+    public Order getOrderById(Integer orderId){
+        Optional<Order> orderOptional =  dao.findById(orderId);
+        if (orderOptional.isPresent()) {
+            return orderOptional.get();
+        }
+        else return null;
+    }
+
+    @Override
+    public List<Order> findBySIN(String SIN){
+        return (List<Order>) dao.findBySIN(SIN);
+    };
+    @Override
+    public List<Order> findByTicker(String ticker){
+        return (List<Order>) dao.findByTicker(ticker);
+    };
 
 }
