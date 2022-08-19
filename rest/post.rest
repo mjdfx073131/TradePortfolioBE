@@ -1,0 +1,11 @@
+POST http://localhost:8080/api/orders
+Content-type: application/json
+
+{
+    "orderId": 10,
+    "sin": "949999999",
+    "ticker": "TSLA",
+    "shares": 2,
+    "unitPrice": 920,
+    "status_code": 0
+}

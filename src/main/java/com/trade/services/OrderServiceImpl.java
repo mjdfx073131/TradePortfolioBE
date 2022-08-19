@@ -21,6 +21,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Order addNewOrder(Order order) {
+        return dao.save(order);
+    }
+    
+    @Override
     public boolean deleteOrderById(int id){
         Order order = dao.findById(id).orElse(null);
         if(order == null){
@@ -30,7 +35,8 @@ public class OrderServiceImpl implements OrderService {
             return true;
         }
     }
-
+    
+    @Override
     public Order getOrderById(Integer orderId){
         Optional<Order> orderOptional =  dao.findById(orderId);
         if (orderOptional.isPresent()) {
