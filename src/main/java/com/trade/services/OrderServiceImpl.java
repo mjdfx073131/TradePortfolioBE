@@ -21,6 +21,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public boolean deleteOrderById(int id){
+        Order order = dao.findById(id).orElse(null);
+        if(order == null){
+            return false;
+        }else{
+            dao.delete(order);
+            return true;
+        }
+    }
+
     public Order getOrderById(Integer orderId){
         Optional<Order> orderOptional =  dao.findById(orderId);
         if (orderOptional.isPresent()) {
@@ -37,4 +47,5 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findByTicker(String ticker){
         return (List<Order>) dao.findByTicker(ticker);
     };
+
 }
