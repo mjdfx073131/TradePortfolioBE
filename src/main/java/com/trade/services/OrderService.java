@@ -9,4 +9,12 @@ public interface OrderService {
     List<Order> getAllOrders();
 
     Order addNewOrder(Order order);
+    
+    boolean deleteOrderById(int id);
+
+    Order getOrderById(Integer orderId);
+
+    List<Order> findBySIN(String SIN);
+    List<Order> findByTicker(String ticker);
+
 }
