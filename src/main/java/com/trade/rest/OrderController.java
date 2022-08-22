@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/orders")
-@CrossOrigin
+@CrossOrigin(origins = "http://tradeportfolio-tradeportfolio.openshift30.conygre.com")
 public class OrderController {
 
 
@@ -38,18 +38,18 @@ public class OrderController {
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    public ResponseEntity<Order> deleteById(@PathVariable("id") int id){
-        boolean found = orderService.deleteOrderById(id);
+    @DeleteMapping("/orderId")
+    public ResponseEntity<Order> deleteById(@RequestParam int orderId){
+        boolean found = orderService.deleteOrderById(orderId);
         if(found){
             return new ResponseEntity<>(HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public ResponseEntity<Order> getByIdWith404(@PathVariable("id") int id) {
-        Order order = orderService.getOrderById(id);
+    @GetMapping("/orderId")
+    public ResponseEntity<Order> getById(@RequestParam int orderId) {
+        Order order = orderService.getOrderById(orderId);
         if (order == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
