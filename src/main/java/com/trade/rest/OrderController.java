@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/orders")
-@CrossOrigin(origins = "http://tradeportfolio-tradeportfolio.openshift30.conygre.com")
+@CrossOrigin(origins = "http://localhost:3000")
 public class OrderController {
 
 
