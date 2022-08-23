@@ -17,4 +17,6 @@ public interface OrderService {
     List<Order> findBySIN(String SIN);
     List<Order> findByTicker(String ticker);
 
+    List<Order> findByFilter(OrderSearchCriteria searchCriteria);
+
 }

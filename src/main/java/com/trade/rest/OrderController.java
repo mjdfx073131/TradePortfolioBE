@@ -1,19 +1,23 @@
 package com.trade.rest;
 
 import com.trade.entities.Order;
+import com.trade.services.OrderSearchCriteria;
 import com.trade.services.OrderService;
-import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/orders")
+@RequestMapping(value = "/api/orders", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin(origins = {"http://localhost:3000"}, allowCredentials = "true")
+
 public class OrderController {
 
 
@@ -22,6 +26,8 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+
+    /*
     @ApiOperation(value = "findAll", nickname = "findAll")
     @RequestMapping(method = RequestMethod.GET)
     public Iterable<Order> findAll() {
@@ -72,6 +78,23 @@ public class OrderController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<List<Order>>(orderService.findByTicker(ticker), HttpStatus.OK);
+        }
+    }
+    */
+
+    @GetMapping("")
+    public ResponseEntity<List<Order>> getOrderByFilter(@RequestParam(required = false) Optional<Integer> orderId,
+                                                        @RequestParam(required = false) Optional<String> SIN,
+                                                        @RequestParam(required = false) Optional<String> ticker){
+        OrderSearchCriteria criteria = new OrderSearchCriteria(orderId, SIN, ticker);
+        //System.out.println("orderId: " + orderId);
+        //System.out.println("SIN: " + SIN);
+        //System.out.println("ticker: " + ticker);
+        List<Order> result = orderService.findByFilter(criteria);
+        if(result.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<List<Order>>(result, HttpStatus.OK);
         }
     }
 }
