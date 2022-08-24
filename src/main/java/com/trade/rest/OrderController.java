@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin()
@@ -72,6 +74,16 @@ public class OrderController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<List<Order>>(orderService.findByTicker(ticker), HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/Portfolio")
+    public ResponseEntity<List<Map<String,Object>>> getPortfolioBySIN(@RequestParam String SIN){
+        List<Map<String, Object>> result = orderService.findBySINGroupByTicker(SIN);
+        if(result.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<List<Map<String, Object>>>(result, HttpStatus.OK);
         }
     }
 }

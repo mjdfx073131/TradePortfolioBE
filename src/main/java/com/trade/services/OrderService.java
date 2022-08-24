@@ -3,6 +3,7 @@ package com.trade.services;
 import com.trade.entities.Order;
 
 import java.util.List;
+import java.util.Map;
 
 public interface OrderService {
     // get all
@@ -16,5 +17,5 @@ public interface OrderService {
 
     List<Order> findBySIN(String SIN);
     List<Order> findByTicker(String ticker);
-
+    List<Map<String,Object>> findBySINGroupByTicker(String SIN);
 }
