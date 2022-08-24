@@ -67,8 +67,8 @@ public class TestOrderRepository {
 
     @Test
     public void orderServiceCanReturnAllOrders() {
-        Iterable<Order> discs = orderService.getAllOrders();
-        Stream<Order> stream = StreamSupport.stream(discs.spliterator(), false);
+        Iterable<Order> orders = orderService.getAllOrders();
+        Stream<Order> stream = StreamSupport.stream(orders.spliterator(), false);
         Optional<Order> order = stream.findFirst();
         assertThat(order.get().getSIN(), equalTo("943111111"));
     }
