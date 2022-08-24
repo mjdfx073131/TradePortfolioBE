@@ -3,6 +3,7 @@ package com.trade.rest;
 import com.trade.entities.Order;
 import com.trade.services.OrderSearchCriteria;
 import com.trade.services.OrderService;
+import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class OrderController {
     private OrderService orderService;
 
 
-    /*
+
     @ApiOperation(value = "findAll", nickname = "findAll")
     @RequestMapping(method = RequestMethod.GET)
     public Iterable<Order> findAll() {
@@ -80,9 +81,9 @@ public class OrderController {
             return new ResponseEntity<List<Order>>(orderService.findByTicker(ticker), HttpStatus.OK);
         }
     }
-    */
 
-    @GetMapping("")
+
+    @GetMapping("/custom")
     public ResponseEntity<List<Order>> getOrderByFilter(@RequestParam(required = false) Optional<Integer> orderId,
                                                         @RequestParam(required = false) Optional<String> SIN,
                                                         @RequestParam(required = false) Optional<String> ticker){
