@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -54,4 +55,9 @@ public class OrderServiceImpl implements OrderService {
         return (List<Order>) dao.findByTicker(ticker);
     };
 
+    @Override
+    public List<Map<String,Object>> findBySINGroupByTicker(String SIN){
+        List<Map<String,Object>> query_result = dao.findBySINGroupByTicker(SIN);
+        return query_result;
+    }
 }
