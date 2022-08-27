@@ -17,8 +17,12 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/orders", produces = MediaType.APPLICATION_JSON_VALUE)
-@CrossOrigin(origins = {"http://localhost:3000"}, allowCredentials = "true")
+@CrossOrigin()
+import java.util.Map;
 
+@RestController
+@CrossOrigin()
+@RequestMapping("/api/orders")
 public class OrderController {
 
 
@@ -96,6 +100,14 @@ public class OrderController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
             return new ResponseEntity<List<Order>>(result, HttpStatus.OK);
+
+    @GetMapping("/Portfolio")
+    public ResponseEntity<List<Map<String,Object>>> getPortfolioBySIN(@RequestParam String SIN){
+        List<Map<String, Object>> result = orderService.findBySINGroupByTicker(SIN);
+        if(result.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<List<Map<String, Object>>>(result, HttpStatus.OK);
         }
     }
 }
