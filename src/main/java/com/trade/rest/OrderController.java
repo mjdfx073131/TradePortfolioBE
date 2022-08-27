@@ -15,14 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping(value = "/api/orders", produces = MediaType.APPLICATION_JSON_VALUE)
-@CrossOrigin()
 import java.util.Map;
 
 @RestController
 @CrossOrigin()
-@RequestMapping("/api/orders")
+@RequestMapping(value = "/api/orders", produces = MediaType.APPLICATION_JSON_VALUE)
 public class OrderController {
 
 
@@ -90,17 +87,18 @@ public class OrderController {
     @GetMapping("/custom")
     public ResponseEntity<List<Order>> getOrderByFilter(@RequestParam(required = false) Optional<Integer> orderId,
                                                         @RequestParam(required = false) Optional<String> SIN,
-                                                        @RequestParam(required = false) Optional<String> ticker){
+                                                        @RequestParam(required = false) Optional<String> ticker) {
         OrderSearchCriteria criteria = new OrderSearchCriteria(orderId, SIN, ticker);
         //System.out.println("orderId: " + orderId);
         //System.out.println("SIN: " + SIN);
         //System.out.println("ticker: " + ticker);
         List<Order> result = orderService.findByFilter(criteria);
-        if(result.isEmpty()){
+        if (result.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else{
+        } else {
             return new ResponseEntity<List<Order>>(result, HttpStatus.OK);
-
+        }
+    }
     @GetMapping("/Portfolio")
     public ResponseEntity<List<Map<String,Object>>> getPortfolioBySIN(@RequestParam String SIN){
         List<Map<String, Object>> result = orderService.findBySINGroupByTicker(SIN);
