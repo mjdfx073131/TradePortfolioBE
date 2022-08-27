@@ -3,6 +3,7 @@ package com.trade.services;
 import com.trade.entities.Order;
 import com.trade.repos.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,6 +56,12 @@ public class OrderServiceImpl implements OrderService {
         return (List<Order>) dao.findByTicker(ticker);
     };
 
+    @Override
+    public List<Order> findByFilter(OrderSearchCriteria searchCriteria){
+        Specification spec = OrderSpecification.createOrderSpecifications(searchCriteria);
+        return dao.findAll(spec);
+    }
+    
     @Override
     public List<Map<String,Object>> findBySINGroupByTicker(String SIN){
         List<Map<String,Object>> query_result = dao.findBySINGroupByTicker(SIN);
